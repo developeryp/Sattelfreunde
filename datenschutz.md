@@ -6,9 +6,9 @@ Stand: September 2026
 
 Verantwortlich für die Datenverarbeitung in dieser App ist:
 
-Yacouba Pfälzner
-[Straße und Hausnummer]
-[PLZ und Ort]
+Yacouba Pfälzner<br>
+[Straße und Hausnummer]<br>
+[PLZ und Ort]<br>
 E-Mail: [Kontakt-E-Mail-Adresse]
 
 ## 2. Welche Daten wir verarbeiten
