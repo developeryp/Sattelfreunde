@@ -53,12 +53,21 @@
     border-top: none;
     padding-top: 0;
   }
+  h3 {
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
   p, li {
     color: var(--text-secondary);
     font-size: 1rem;
   }
   ul {
     padding-left: 1.2em;
+  }
+  li {
+    margin-bottom: 6px;
   }
   strong {
     color: var(--text);
@@ -74,40 +83,85 @@
   <p class="updated">Stand: September 2026</p>
 
   <h2>1. Verantwortlicher</h2>
-  <p>Verantwortlich für die Datenverarbeitung in dieser App ist:</p>
+  <p>Verantwortlich für die Datenverarbeitung im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
   <p>
     Yacouba Pfälzner<br>
     Ehrenbergstraße 17<br>
     14195 Berlin<br>
+    Deutschland<br>
     E-Mail: developeryp1@gmail.com
   </p>
 
-  <h2>2. Welche Daten wir verarbeiten</h2>
+  <h2>2. Überblick über die Datenverarbeitung</h2>
+  <p>Sattelfreunde ist eine App, über die du dich mit anderen zu gemeinsamen Radtouren verabreden kannst. Für den Betrieb der App nutzen wir die Plattform <strong>Firebase</strong> von Google (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, als Teil der Google LLC-Unternehmensgruppe). Dort werden dein Konto, dein Profil, die von dir erstellten Fahrten, Chat-Nachrichten, Bewertungen und Meldungen sowie technische Kennungen für Benachrichtigungen gespeichert und verarbeitet. Google fungiert dabei als unser Auftragsverarbeiter gemäß Art. 28 DSGVO; ein entsprechender Auftragsverarbeitungsvertrag mit Google liegt vor.</p>
+  <p>Eine frühere Version dieser Erklärung beschrieb Profildaten als rein lokal auf deinem Gerät gespeichert. Das war nicht mehr zutreffend und ist unten korrigiert: Konto-, Profil-, Fahrt-, Chat- und Bewertungsdaten liegen serverseitig in der Cloud-Datenbank (Cloud Firestore), damit sie zwischen deinen Geräten und mit anderen Nutzenden synchron sind.</p>
+
+  <h2>3. Welche Daten wir verarbeiten</h2>
+
+  <h3>Kontodaten</h3>
+  <p>Je nach gewählter Anmeldeart deine E-Mail-Adresse und ein verschlüsseltes Passwort, oder eine eindeutige Kennung deines Google- bzw. Apple-Kontos. Diese Daten werden über Firebase Authentication verarbeitet.</p>
+
+  <h3>Profildaten</h3>
+  <p>Anzeigename, Alter und optional ein Profilfoto. Diese Angaben werden in der Cloud-Datenbank (Cloud Firestore) gespeichert; ein Profilfoto wird zusätzlich in Firebase Storage abgelegt. Dein Anzeigename und dein Profilfoto sind für andere Nutzende der App sichtbar, etwa bei Fahrten, an denen du teilnimmst, oder bei Bewertungen, die du abgibst.</p>
+
+  <h3>Standortdaten</h3>
+  <p>Nur wenn du es erlaubst und nur während der Nutzung der App, um dir Fahrten in deiner Nähe anzuzeigen und dir bei der Auswahl eines Treffpunkts zu helfen. Bei der Adresssuche für einen Treffpunkt werden Suchanfragen an den Kartendienst deines Betriebssystems (Apple Maps unter iOS bzw. Google Maps/Places unter Android) übermittelt. Dein fortlaufender Standort wird von uns nicht dauerhaft gespeichert oder an Dritte weitergegeben.</p>
+
+  <h3>Nutzungsinhalte</h3>
   <ul>
-    <li><strong>Kontodaten:</strong> Je nach gewählter Anmeldeart deine E-Mail-Adresse und ein verschlüsseltes Passwort, oder eine eindeutige Kennung deines Google- bzw. Apple-Kontos. Diese Daten werden von Firebase Authentication (Google Ireland Limited) in unserem Auftrag verarbeitet.</li>
-    <li><strong>Profildaten:</strong> Anzeigename, Alter und optional ein Profilfoto. Diese Angaben werden lokal auf deinem Gerät gespeichert, nicht auf einem Server.</li>
-    <li><strong>Standortdaten:</strong> Nur wenn du es erlaubst und nur während der Nutzung der App, um dir Fahrten in deiner Nähe anzuzeigen. Dein Standort wird nicht dauerhaft gespeichert oder an Dritte weitergegeben.</li>
-    <li><strong>Nutzungsinhalte:</strong> Von dir erstellte Fahrten, Nachrichten im Fahrt-Chat und Bewertungen anderer Nutzer.</li>
-    <li><strong>Nutzungsstatistiken:</strong> Über Firebase Analytics (Google Ireland Limited) erfassen wir, welche Funktionen genutzt werden (z. B. Anmeldung, Fahrt erstellen, Fahrt beitreten, Chat-Nachricht senden, Bewertung abgeben) und welche Bildschirme aufgerufen werden. Dabei werden keine Namen, E-Mail-Adressen, Fahrtinhalte oder Nachrichtentexte übertragen – nur Ereignis- und Zählwerte.</li>
+    <li><strong>Fahrten:</strong> Titel, Beschreibung, Treffpunkt, Termin, Geschwindigkeit, Streckendaten (auch aus hochgeladenen GPX-Dateien) und die Liste der Teilnehmenden. Diese Angaben sind für andere Nutzende der App sichtbar, sofern die Fahrt öffentlich einsehbar ist.</li>
+    <li><strong>Chat-Nachrichten:</strong> Nachrichten, die du im Chat einer Fahrt schreibst, sind für die übrigen Teilnehmenden dieser Fahrt sichtbar und werden serverseitig gespeichert, solange die Fahrt bzw. dein Konto besteht.</li>
+    <li><strong>Bewertungen:</strong> Sternebewertungen und optionale Kommentare, die du für Fahrt-Organisator:innen abgibst bzw. die du selbst erhältst, sind öffentlich auf dem jeweiligen Profil sichtbar.</li>
   </ul>
+
+  <h3>Meldungen und Blockierungen</h3>
+  <p>Wenn du eine Nachricht, eine Bewertung oder ein Profil meldest, speichern wir die gemeldete Person, den Grund, einen Ausschnitt des gemeldeten Inhalts sowie deine Nutzerkennung als meldende Person, damit wir den Vorgang prüfen können. Diese Meldungen sind ausschließlich für uns zur Missbrauchsprüfung einsehbar, nicht für andere Nutzende. Wenn du eine andere Person blockierst, speichern wir dies in deinem Profil; blockierte Personen sehen deine Inhalte danach nicht mehr und du siehst ihre nicht mehr (gegenseitige Blockierung).</p>
+
+  <h3>Push-Benachrichtigungen</h3>
+  <p>Wenn du Benachrichtigungen erlaubst, speichern wir ein technisches Gerätekennzeichen (Firebase-Cloud-Messaging-Token) zu deinem Konto, um dir Mitteilungen zu senden, etwa über Beitrittsanfragen, deren Genehmigung oder neue Chat-Nachrichten.</p>
+
+  <h3>Nutzungsstatistiken</h3>
+  <p>Über Firebase Analytics erfassen wir, welche Funktionen genutzt werden (z. B. Anmeldung, Fahrt erstellen, Fahrt beitreten, Chat-Nachricht senden, Bewertung abgeben) und welche Bildschirme aufgerufen werden. Dabei werden keine Namen, E-Mail-Adressen, Fahrtinhalte oder Nachrichtentexte übertragen – nur Ereignis- und Zählwerte sowie eine pseudonyme Geräte-/App-Instanz-Kennung.</p>
   <p>Wir erstellen keine personalisierten Werbeprofile und binden keine Werbedienste ein.</p>
 
-  <h2>3. Zweck der Verarbeitung</h2>
-  <p>Die Daten werden verarbeitet, um dir die Kernfunktionen der App bereitzustellen: Anmeldung, Erstellen und Finden von Fahrten, Kommunikation mit anderen Teilnehmenden und Anzeige von Fahrten in deiner Nähe. Die Nutzungsstatistiken helfen uns zusätzlich zu verstehen, welche Funktionen genutzt werden, um die App gezielt zu verbessern.</p>
+  <h2>4. Zweck der Verarbeitung</h2>
+  <p>Die Daten werden verarbeitet, um dir die Kernfunktionen der App bereitzustellen: Anmeldung und Kontoverwaltung, Erstellen und Finden von Fahrten, Kommunikation mit anderen Teilnehmenden, Bewertung von Organisator:innen, Schutz der Nutzergemeinschaft durch Melde- und Blockierfunktionen, Benachrichtigungen zu deinen Fahrten sowie Anzeige von Fahrten in deiner Nähe. Die Nutzungsstatistiken helfen uns zusätzlich zu verstehen, welche Funktionen genutzt werden, um die App gezielt zu verbessern.</p>
 
-  <h2>4. Rechtsgrundlage</h2>
-  <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (zur Erfüllung des Nutzungsvertrags mit dir) sowie – für den Standortzugriff – auf Grundlage deiner Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die du jederzeit über die iOS-Einstellungen widerrufen kannst. Die Nutzungsstatistiken über Firebase Analytics verarbeiten wir auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO an der Verbesserung und Weiterentwicklung der App.</p>
+  <h2>5. Rechtsgrundlage</h2>
+  <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (zur Erfüllung des Nutzungsvertrags mit dir). Für den Standortzugriff und Push-Benachrichtigungen stützen wir uns auf deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die du jederzeit über die Einstellungen deines Geräts widerrufen kannst. Die Nutzungsstatistiken über Firebase Analytics sowie die Bearbeitung von Meldungen und Blockierungen verarbeiten wir auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO an der Verbesserung der App bzw. am Schutz der Nutzergemeinschaft vor Missbrauch.</p>
 
-  <h2>5. Weitergabe an Dritte</h2>
-  <p>Für die Anmeldung nutzen wir Firebase Authentication und für Nutzungsstatistiken Firebase Analytics (jeweils Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) als Auftragsverarbeiter. Bei Anmeldung über Google oder Apple verarbeiten auch diese Anbieter Daten gemäß ihrer eigenen Datenschutzerklärung. Eine Weitergabe an weitere Dritte findet nicht statt.</p>
+  <h2>6. Weitergabe an Dritte</h2>
+  <p>Für Kontoverwaltung, Datenspeicherung, Dateispeicherung, Push-Benachrichtigungen und Nutzungsstatistiken nutzen wir Firebase-Dienste (Firebase Authentication, Cloud Firestore, Firebase Storage, Firebase Cloud Messaging, Firebase Analytics) der Google Ireland Limited als Auftragsverarbeiter. Bei Anmeldung über Google oder Apple verarbeiten auch diese Anbieter Daten gemäß ihrer eigenen Datenschutzerklärung. Bei der Adresssuche für einen Treffpunkt werden Anfragen an den Kartendienst deines Betriebssystems übermittelt (siehe oben). Inhalte, die du bewusst mit anderen teilst (Fahrtdetails, Chat-Nachrichten innerhalb einer Fahrt, öffentliche Bewertungen), sind für die jeweils berechtigten anderen Nutzenden der App sichtbar. Eine darüber hinausgehende Weitergabe an Dritte findet nicht statt; wir verkaufen keine Daten.</p>
 
-  <h2>6. Speicherdauer</h2>
-  <p>Kontodaten werden gespeichert, bis du dein Konto löschst. Profildaten auf deinem Gerät werden gelöscht, sobald du dein Konto löschst oder die App deinstallierst.</p>
+  <h2>7. Internationale Datenübertragung</h2>
+  <p>Google verarbeitet Daten auch außerhalb der EU/des EWR, unter anderem in den USA. Für solche Übermittlungen stützt sich Google auf die EU-Standardvertragsklauseln bzw. auf eine Zertifizierung nach dem EU-US Data Privacy Framework, um ein angemessenes Datenschutzniveau sicherzustellen.</p>
 
-  <h2>7. Deine Rechte</h2>
-  <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner Daten sowie auf Datenübertragbarkeit. Eine Kopie deiner Kontodaten kannst du direkt in der App unter Profil → Konto verwalten → Daten exportieren herunterladen; dein Konto kannst du dort ebenfalls vollständig löschen. Außerdem hast du ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde.</p>
+  <h2>8. Speicherdauer</h2>
+  <p>Kontodaten werden gespeichert, bis du dein Konto löschst. Fahrten, Chat-Nachrichten und Bewertungen bleiben grundsätzlich bestehen, solange dein Konto oder die jeweilige Fahrt besteht, bzw. bis du sie selbst entfernst oder dein Konto löschst. Meldungen speichern wir, solange dies zur Missbrauchsprüfung und zum Schutz der Nutzergemeinschaft erforderlich ist. Löschst du dein Konto, werden deine Kontodaten und dein Profil gelöscht; Inhalte, die untrennbar mit fortbestehenden Fahrten anderer Nutzender verknüpft sind (z. B. bereits gesendete Chat-Nachrichten), können in anonymisierter Form fortbestehen.</p>
 
-  <h2>8. Kontakt</h2>
+  <h2>9. Datensicherheit</h2>
+  <p>Die Übertragung deiner Daten zwischen der App und unseren Servern erfolgt verschlüsselt (TLS). Der Zugriff auf deine Daten ist über Sicherheitsregeln so eingeschränkt, dass grundsätzlich nur du auf deine eigenen Kontodaten und nur berechtigte Teilnehmende auf Fahrt- bzw. Chat-Inhalte zugreifen können.</p>
+
+  <h2>10. Altersgrenze</h2>
+  <p>Die App richtet sich nicht an Kinder unter 16 Jahren. Näheres regeln unsere <a href="nutzungsbedingungen.html">Nutzungsbedingungen</a>.</p>
+
+  <h2>11. Deine Rechte</h2>
+  <p>Du hast nach der DSGVO folgende Rechte bezüglich deiner personenbezogenen Daten:</p>
+  <ul>
+    <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+    <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+    <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+    <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+    <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+    <li>Widerspruchsrecht gegen Verarbeitungen, die auf berechtigtem Interesse beruhen (Art. 21 DSGVO)</li>
+  </ul>
+  <p>Eine Kopie deiner Kontodaten kannst du direkt in der App unter Profil → Konto verwalten → Daten exportieren herunterladen; dein Konto kannst du dort ebenfalls vollständig löschen. Für weitergehende Anliegen erreichst du uns unter der oben genannten E-Mail-Adresse.</p>
+  <p>Außerdem hast du ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde, für uns zuständig ist die Berliner Beauftragte für Datenschutz und Informationsfreiheit (Friedrichstr. 219, 10969 Berlin), du kannst dich aber auch an die Aufsichtsbehörde an deinem Wohnort wenden.</p>
+
+  <h2>12. Änderungen dieser Erklärung</h2>
+  <p>Wir passen diese Datenschutzerklärung an, wenn sich die App oder die rechtlichen Rahmenbedingungen ändern. Die jeweils aktuelle Fassung findest du immer unter dieser Adresse sowie über den Link in der App.</p>
+
+  <h2>13. Kontakt</h2>
   <p>Bei Fragen zum Datenschutz erreichst du uns unter der oben genannten E-Mail-Adresse.</p>
 </main>
 </body>
