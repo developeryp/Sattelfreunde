@@ -3,16 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sattelfreunde</title>
+<title>Sattelfreunde – App für gemeinsame Radtouren</title>
+<meta name="description" content="Sattelfreunde: Radtouren in deiner Nähe entdecken, gemeinsam fahren und deine Gruppe organisieren.">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
 <style>
   :root {
     color-scheme: light dark;
     --bg: #ffffff;
     --text: #1c1c1e;
     --text-secondary: #6e6e73;
-    --accent: #d9622b;
+    --accent: #e55f17;
     --card: #f5f5f7;
     --rule: #e5e5ea;
+    --btn-text: #ffffff;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -23,6 +27,7 @@
       --rule: #2c2c2e;
     }
   }
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     background: var(--bg);
@@ -33,24 +38,90 @@
   main {
     max-width: 680px;
     margin: 0 auto;
-    padding: 48px 24px 80px;
+    padding: 64px 24px 80px;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .hero img {
+    width: 108px;
+    height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+    margin-bottom: 24px;
   }
   h1 {
-    font-size: 2rem;
-    margin-bottom: 4px;
+    font-size: 2.1rem;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
   }
   .tagline {
     color: var(--text-secondary);
-    font-size: 1rem;
-    margin-bottom: 40px;
+    font-size: 1.1rem;
+    margin: 0 0 32px;
+    max-width: 460px;
   }
-  nav {
+  .stores {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: var(--accent);
+    color: var(--btn-text);
+  }
+  .store-btn.secondary {
+    background: var(--card);
+    color: var(--text);
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 480px) {
+    .features { grid-template-columns: 1fr; }
+  }
+  .feature {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .feature .emoji {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .feature h3 {
+    font-size: 1rem;
+    margin: 0 0 4px;
+  }
+  .feature p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+  nav.legal {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 56px;
   }
-  nav a {
+  nav.legal a {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -62,7 +133,7 @@
     font-size: 1.05rem;
     font-weight: 600;
   }
-  nav a span.arrow {
+  nav.legal a span.arrow {
     color: var(--text-secondary);
     font-weight: 400;
   }
@@ -73,7 +144,11 @@
     border-top: 1px solid var(--rule);
     padding-top: 28px;
   }
-  h2:first-of-type {
+  section#impressum h1 {
+    font-size: 1.5rem;
+    scroll-margin-top: 24px;
+  }
+  section#impressum h2:first-of-type {
     border-top: none;
     padding-top: 0;
   }
@@ -85,31 +160,63 @@
 </head>
 <body>
 <main>
-  <h1>Sattelfreunde</h1>
-  <p class="tagline">App für gemeinsame Radtouren.</p>
+  <div class="hero">
+    <img src="assets/icon.png" alt="Sattelfreunde Logo">
+    <h1>Sattelfreunde</h1>
+    <p class="tagline">Radtouren in deiner Nähe entdecken, gemeinsam fahren und deine Gruppe organisieren.</p>
+    <div class="stores">
+      <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.yp.sattelfreunde">Bei Google Play</a>
+      <a class="store-btn secondary" href="#">Im App Store</a>
+    </div>
+  </div>
 
-  <nav>
+  <div class="features">
+    <div class="feature">
+      <span class="emoji">🗺️</span>
+      <h3>Touren in deiner Nähe</h3>
+      <p>Live-Karte zeigt Fahrten in deinem Umkreis, filterbar nach Entfernung.</p>
+    </div>
+    <div class="feature">
+      <span class="emoji">🚴</span>
+      <h3>Gemeinsam fahren</h3>
+      <p>Erstelle eigene Touren oder schließ dich bestehenden Fahrten an.</p>
+    </div>
+    <div class="feature">
+      <span class="emoji">📈</span>
+      <h3>Strecken im Blick</h3>
+      <p>Distanz und Höhenmeter jeder Route auf einen Blick.</p>
+    </div>
+    <div class="feature">
+      <span class="emoji">💬</span>
+      <h3>Deine Gruppe</h3>
+      <p>Chat, Benachrichtigungen und Profile für deine Sattelfreunde.</p>
+    </div>
+  </div>
+
+  <nav class="legal">
     <a href="datenschutz.html">Datenschutzerklärung <span class="arrow">→</span></a>
     <a href="nutzungsbedingungen.html">Nutzungsbedingungen <span class="arrow">→</span></a>
   </nav>
 
-  <h1 id="impressum" style="font-size: 1.5rem; scroll-margin-top: 24px;">Impressum</h1>
+  <section id="impressum">
+    <h1>Impressum</h1>
 
-  <h2>Angaben gemäß § 5 TMG</h2>
-  <p>
-    Yacouba Pfälzner<br>
-    Ehrenbergstraße 17<br>
-    14195 Berlin<br>
-    Deutschland
-  </p>
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>
+      Yacouba Pfälzner<br>
+      Ehrenbergstraße 17<br>
+      14195 Berlin<br>
+      Deutschland
+    </p>
 
-  <h2>Kontakt</h2>
-  <p>
-   E-Mail: developeryp1@gmail.com
-  </p>
+    <h2>Kontakt</h2>
+    <p>
+     E-Mail: developeryp1@gmail.com
+    </p>
 
-  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-  <p>Yacouba Pfälzner, Anschrift wie oben.</p>
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>Yacouba Pfälzner, Anschrift wie oben.</p>
+  </section>
 </main>
 </body>
 </html>
