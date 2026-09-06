@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sattelfreunde</title>
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --text: #1c1c1e;
+    --text-secondary: #6e6e73;
+    --accent: #e55f17;
+    --card: #f5f5f7;
+    --btn-text: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d0d0f;
+      --text: #f2f2f2;
+      --text-secondary: #9a9a9e;
+      --card: #1c1c1e;
+    }
+  }
+  * { box-sizing: border-box; }
+  /* Author-set `display` on .stores would otherwise beat the UA stylesheet's
+     [hidden] rule, leaving the store buttons visible on a plain 404. */
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 360px; width: 100%; padding: 24px; text-align: center; }
+  img.icon {
+    width: 96px; height: 96px; border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.18); margin-bottom: 20px;
+  }
+  h1 { font-size: 1.4rem; margin: 0 0 6px; }
+  p { color: var(--text-secondary); font-size: 0.95rem; margin: 0 0 28px; }
+  .stores { display: flex; flex-direction: column; gap: 12px; }
+  .store-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 14px 22px; border-radius: 12px; text-decoration: none;
+    font-weight: 600; font-size: 0.95rem;
+    background: var(--accent); color: var(--btn-text);
+  }
+  .store-btn.secondary { background: var(--card); color: var(--text); }
+  a.home { color: var(--accent); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="/assets/icon.png" alt="Sattelfreunde Logo">
+  <h1 id="heading">Seite nicht gefunden</h1>
+  <p id="subline">Diese Seite gibt es leider nicht.</p>
+  <div class="stores" id="stores" hidden>
+    <a class="store-btn" id="ios-link" href="https://apps.apple.com/de/app/sattelfreunde/id6807813797">Im App Store öffnen</a>
+    <a class="store-btn secondary" id="android-link" href="https://play.google.com/store/apps/details?id=com.yp.sattelfreunde">Bei Google Play öffnen</a>
+  </div>
+  <p id="home-wrap"><a class="home" href="/">Zur Startseite</a></p>
+</main>
+<script>
+  // GitHub Pages has no server-side routing, so every /ride/{id} link that
+  // isn't intercepted by the installed app (universal link / app link) lands
+  // here. Those visitors don't have the app — send them to the right store
+  // instead of showing them a dead 404.
+  var match = window.location.pathname.match(/^\/ride\/([^\/]+)\/?$/);
+  if (match) {
+    var rideId = match[1];
+    var ua = navigator.userAgent || navigator.vendor || "";
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var isAndroid = /android/i.test(ua);
+
+    document.getElementById("heading").textContent = "Fahrt in der App öffnen";
+    document.getElementById("subline").textContent = "Du wirst gleich weitergeleitet …";
+    document.getElementById("stores").hidden = false;
+    document.getElementById("home-wrap").hidden = true;
+
+    if (isIOS || isAndroid) {
+      // The app may be installed but not yet verified for app links (fresh
+      // install, or link opened inside an in-app browser) — give the custom
+      // scheme a shot before falling through to the store.
+      window.location = "sattelfreunde://ride/" + rideId;
+      setTimeout(function () {
+        var storeUrl = isIOS
+          ? document.getElementById("ios-link").href
+          : document.getElementById("android-link").href;
+        window.location.replace(storeUrl);
+      }, 1200);
+    }
+  }
+</script>
+</body>
+</html>

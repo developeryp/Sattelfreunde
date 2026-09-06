@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.yp.sattelfreunde",
+      "sha256_cert_fingerprints": [
+        "C9:4E:A6:B3:0C:1D:C1:6A:56:EE:48:88:FD:17:5D:33:B2:E8:E3:0B:E7:DD:28:C5:C2:EC:CE:B9:90:14:00:52"
+      ]
+    }
+  }
+]
