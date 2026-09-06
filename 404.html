@@ -89,12 +89,23 @@
       // install, or link opened inside an in-app browser) — give the custom
       // scheme a shot before falling through to the store.
       window.location = "sattelfreunde://ride/" + rideId;
-      setTimeout(function () {
+
+      var redirect = setTimeout(function () {
         var storeUrl = isIOS
           ? document.getElementById("ios-link").href
           : document.getElementById("android-link").href;
         window.location.replace(storeUrl);
       }, 1200);
+
+      // If the custom scheme worked, the app is now in the foreground and this
+      // page is hidden. Without cancelling, coming back to the browser would
+      // yank the user to the store even though they already reached the ride.
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) clearTimeout(redirect);
+      });
+      window.addEventListener("pagehide", function () {
+        clearTimeout(redirect);
+      });
     }
   }
 </script>
